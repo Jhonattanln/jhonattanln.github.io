@@ -138,5 +138,5 @@ f.tight_layout()
 ```
 
 ### Gráfico de retorno e drawdown:
-![estratégia](/img\posts\DecisionTree\Estratégia_Decision.png)
+![estratégia](/img/posts\DecisionTree\Estratégia_Decision.png)
 
