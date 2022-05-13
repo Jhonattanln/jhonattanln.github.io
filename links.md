@@ -2,7 +2,7 @@
 layout: page
 title: Links
 description: Links de projetos.
-background: '/img/bg-sobre.png'
+background: '/img/bg-home.png'
 form: true
 ---
 
