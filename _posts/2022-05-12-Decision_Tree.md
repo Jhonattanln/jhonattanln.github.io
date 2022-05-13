@@ -2,7 +2,7 @@
 layout: post
 title: "Trading Machine - Decision Tree"
 subtitle: "Analise classificatória para os retornos da PETR4"
-background: '/img\posts\DecisionTree\Decision_Tree.png'
+background: '/img\Decision_Tree\Decision_Tree.png'
 ---
 # Trading Machine - Decision Tree
 
