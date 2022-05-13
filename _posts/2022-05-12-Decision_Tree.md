@@ -21,7 +21,7 @@ Além dos retornos passados e a % de quanto um fechamento ficou da máxima e mí
 ### Bibliotecas utilizadas:
 
 
-```markdown
+```python
 import pandas as pd
 import numpy as np
 import ta  ### biblioteca para analise de indicadores técnicos
@@ -47,7 +47,7 @@ A base de dados utilizada foi provida pela plataforma Economatica e comtém:
 * Máxima
 * Médio
 
-```markdown
+```python
 df = pd.read_excel('economatica.xlsx', parse_dates=True, index_col=0, skiprows=3)
 df.rename(columns={'Volume$':'Volume'}, inplace=True)
 ```
@@ -57,7 +57,7 @@ df.rename(columns={'Volume$':'Volume'}, inplace=True)
 A biblioteca ta foi utilizada para o cálculo dos indicadores:
 
 
-```markdown
+```python
 df['Retornos'] = df.Fechamento.pct_change() ## retornos
 df['Kama'] = ta.momentum.KAMAIndicator(close=df.Fechamento, window=21).kama() ## indicador Kama
 df['ROC'] = ta.momentum.ROCIndicator(close=df.Fechamento, window=12).roc()
@@ -75,7 +75,7 @@ df['Normal'] = (df.Fechamento - df.Mínimo) / (df.Máximo - df.Mínimo)
 
 Houve a necessidade da limpeza de dados faltantes quando calculados os indicadores, como também a criação de targets para o modelo de classificação supervisionada
 
-```markdown
+```python
 df = df.dropna() ## excluindo valores nulos
 X = df[[
         'Q Negs', 'Q Títs', 'Volume', 'Fechamento', 'Abertura', 'Mínimo', 
@@ -86,7 +86,7 @@ y = np.where(df['Fechamento'].shift(-1) > df['Fechamento'], 1, -1) ## criando ta
 
 Através _train_test_split_ foi criado a base de treinamento e teste
 
-```markdown
+```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
 ```
 ### Pipeline
@@ -94,7 +94,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle
 Para uma melhor acurácia do modelo, houve a normalização dos dados, utilizando a bibliote _StandardScaler_ e posteriormente o pipeline foi criado utilizando _Pipeline_.
 Foram _inputs_ de paramentros para testar qual ajuste seria o melhor no modelo de classificação
 
-```markdown
+```python
 scaler = StandardScaler()
 dt = DecisionTreeClassifier()
 pipeline = Pipeline(steps=[('Scaler',scaler),
@@ -107,19 +107,19 @@ random_state = [3, 4]
 
 ### Rodando modelo
 
-```markdown
+```python
 clf_GS = GridSearchCV(pipeline, param_grid=parameters, scoring='accuracy', cv=5)
 clf_GS.fit(X_train, y_train)
 ```
 > A acurácia do modelo comparado a base de treinamento e de teste foi ≅ 51 %
 
-```markdown
+```python
 report = classification_report(y_test, clf_GS.predict(X_test))
 ```
 
 ## Analisando estratégia:
 
-```markdown
+```python
 df['Strategy_returns'] = df['Retornos'].shift(-1) * clf_GS.predict(X) ### retorno da estratégia
 ### Calculando Drawdown
 strategy = df['Strategy_returns'][X_train.shape[0]:]
