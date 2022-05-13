@@ -6,4 +6,4 @@ background: '/img/bg-links.jpg'
 form: true
 ---
 
-## Linsks uteis
+## Links uteis
