@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Links
-description: Have questions? I have answers.
+description: Links de projetos.
 background: '/img/bg-contact.jpg'
 form: true
 ---
