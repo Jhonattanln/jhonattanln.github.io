@@ -138,5 +138,5 @@ f.tight_layout()
 ```
 
 ### Gráfico de retorno e drawdown:
-![estratégia](https://user-images.githubusercontent.com/63247251/167264997-ad362aef-552d-4ecd-9367-b2048d1bf711.png)
+![estratégia](C:\Users\Jhona\OneDrive - Grupo Marista\Projetos\Github\jhonattanln.github.io\img\posts\DecisionTree\download.png)
 
