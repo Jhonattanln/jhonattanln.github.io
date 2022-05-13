@@ -2,7 +2,7 @@
 layout: post
 title: "Trading Machine - Decision Tree"
 subtitle: "Analise classificatória para os retornos da PETR4"
-background: '/img/posts/01.jpg'
+background: 'img\posts\DecisionTree\Decision_Tree.png'
 ---
 # Trading Machine - Decision Tree
 
@@ -138,5 +138,5 @@ f.tight_layout()
 ```
 
 ### Gráfico de retorno e drawdown:
-![estratégia](C:\Users\Jhona\OneDrive - Grupo Marista\Projetos\Github\jhonattanln.github.io\img\posts\DecisionTree\download.png)
+![estratégia](img\posts\DecisionTree\Estratégia_Decision.png)
 
