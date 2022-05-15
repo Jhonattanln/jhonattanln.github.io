@@ -111,3 +111,8 @@ testes %>%
   scale_y_continuous(label = scales::percent)
 ```
 ![P_value](/img/posts/Teorema_limite/Rplot_pvalue.png)
+
+#### Referências:
+SARTORIS, Alexandre. Estatística e introdução a econometria. 2.Ed. Saraiva, 2013. p.144-148
+CAVALCANTE, Pedro. Simulando o Teorema Central do Limite no R. **AZUL**. 2019. Disponível em:
+(https://azul.netlify.app/2019/11/03/central-limit-theorem-r/)
