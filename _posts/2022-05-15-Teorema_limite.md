@@ -32,3 +32,24 @@ Uniforme     |
 t-Student    |
 f-Fisher     |
 
+```r
+### Criando dodos para análise
+n <- 5000 # número da amostra
+m <- 5000 # número da amostra que serão tiradas as medias
+
+sim <- tibble(indice = 1:n, ### tibble para entrada dos dados
+              exponencial = double(length = n),
+              uniforme = double(length = n),
+              tStudent = double(length = n),
+              fFisher = double(length = n))
+### Estruturando as médias
+
+set.seed(1234)
+for(i in 1:n) {
+  sim$exponencial[i] <- rexp(n = m) %>% mean()
+  sim$uniforme[i] <- runif(n = m) %>% mean()
+  sim$tStudent[i] <- rt(n = m, df = 2) %>% mean()
+  sim$fFisher[i] <- rf(n = m, df1 = 2, df2 = 4) %>% mean()
+}
+```
+O próximo passo será normalizar a média de X ̅
