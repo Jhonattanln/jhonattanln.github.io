@@ -77,3 +77,37 @@ ecdf_fisher <- ecdf(janela$fFisher)
 
 plot(ecdf_fisher)
 ```
+![Distribuição](/img/posts/Teorema_limite/Rplot_distribuicao.png)
+![ECDF](/img/posts/Teorema_limite/Rplot_ecdf.png)
+
+Agora vamos fazer o teste de _Kolmogorov-Smirnov_ para analisar se os dados seguem uma distribuição normal e também notar a dinâmica dos valores quando aumentamos a amostra .
+
+```r
+for(i in 3:nrow(testes)) {
+  
+  janela <- sim %>% 
+    filter(indice <= i) %>% 
+    transmute(uniforme = (uniforme - mean(uniforme)/sd(uniforme)),
+              tStudent = (tStudent - mean(tStudent))/sd(tStudent),
+              fFisher = (fFisher - mean(fFisher))/sd(fFisher))
+
+  ### Rodando teste de Kolmogorov-Smirnov
+  
+  testes$Puni[i] <- ks.test(x = janela$uniforme, 'pnorm')$p.value
+  testes$PtStu[i] <- ks.test(x = janela$tStudent, 'pnorm')$p.value
+  testes$PfFis[i] <- ks.test(x = janela$fFisher, 'pnorm')$p.value
+  
+}
+### Gráfico do p_value
+
+testes %>%
+  pivot_longer(Puni:PfFis,
+               names_to = "distro",
+               values_to = "p") %>%
+  ggplot(aes(x = indice, color = distro, y = p))+
+  geom_line(size=1.2, alpha = 0.8)+
+  theme_hc()+
+  scale_colour_hc()+
+  scale_y_continuous(label = scales::percent)
+```
+![P_value](/img/posts/Teorema_limite/Rplot_pvalue.png)
