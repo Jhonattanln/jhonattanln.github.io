@@ -50,7 +50,13 @@ for(i in 1:n) {
   sim$uniforme[i] <- runif(n = m) %>% mean()
   sim$tStudent[i] <- rt(n = m, df = 2) %>% mean()
   sim$fFisher[i] <- rf(n = m, df1 = 2, df2 = 4) %>% mean()
+
 }
-$\overline{x}$
+
 ```
-O próximo passo será normalizar a média de $\overline{x}$
+
+O próximo passo será normalizar a média de X, assim temos:
+![Teorema](/img/posts/Teorema_limite/Captura_1.png)
+
+Portanto, o TLC terá média 0 e variância 1
+![Teorema](/img/posts/Teorema_limite/Captura_2.png)
