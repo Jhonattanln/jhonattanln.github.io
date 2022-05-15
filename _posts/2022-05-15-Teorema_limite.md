@@ -52,4 +52,4 @@ for(i in 1:n) {
   sim$fFisher[i] <- rf(n = m, df1 = 2, df2 = 4) %>% mean()
 }
 ```
-O próximo passo será normalizar a média de X ̅
+O próximo passo será normalizar a média de $\overline{x}$
