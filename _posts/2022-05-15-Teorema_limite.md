@@ -59,4 +59,4 @@ O próximo passo será normalizar a média de X, assim temos:
 ![Teorema](/img/posts/Teorema_limite/Captura_1.png)
 
 Portanto, o TLC terá média 0 e variância 1
-![Teorema](/img/posts/Teorema_limite/Captura_2.png)
+![Teorema](/img/posts/Teorema_limite/Captura_2.png =50x10)
