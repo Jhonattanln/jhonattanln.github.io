@@ -4,7 +4,7 @@ title: "Econometria - Teorema do limite central"
 subtitle: "Aplicação do teorema do limite central - R"
 background: '/img/posts/Teorema_limite\normal.jpg'
 ---
-### Teorema do Limite Central
+## Teorema do Limite Central
 
 O Teorema do Limite Central ou TLC é um dos conceitos mais importantes da estatística moderna e utilizado para diversos problemas com amostragem.
 
@@ -12,3 +12,23 @@ O Teorema do Limite Central ou TLC é um dos conceitos mais importantes da estat
 > Definão tirada do livro _Estatística e introdução a econometria - Sartoris_
 
 Quanto maior o número de observações na amostra da média, maior será a convergência da distribuição para a normal 
+
+### Simulação
+
+```r
+### Importando bibliotecas
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggthemes)
+```
+Para a simulação foram utilizadas diferentes distribuições
+
+Distribuição |
+-------------|
+Exponencial  |
+Uniforme     |
+t-Student    |
+f-Fisher     |
+
