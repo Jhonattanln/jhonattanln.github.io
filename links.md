@@ -6,6 +6,8 @@ background: '/img/bg-links.jpg'
 form: true
 ---
 
-## Links uteis
+### Podcast Na Mesma Moeda
+[![SPOTIFY](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)](https://open.spotify.com/show/3fh2czAapV1nfJyB6bj8zo?si=ujJgLIQORse6cSb1vTauNw&nd=1)
 
-[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jhonattan-economia/)
+### Clube de Finanças da PUCPR
+[![INSTAGRAM](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/clubedefinancaspucpr/)
