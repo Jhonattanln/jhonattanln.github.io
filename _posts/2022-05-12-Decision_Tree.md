@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Trading Machine - Decision Tree"
-subtitle: "Analise classificatória para os retornos da PETR4 em Python"
+subtitle: "Analise classificatória para os retornos da PETR4 - Python"
 background: '/img/posts/Decision_Tree/Decision_Tree.jpg'
 ---
 # Trading Machine - Decision Tree
 
-A idéia principla é testar indicadores técnicos para a explicação de retornos da ação PETR4, para isso foi usado o modelo de Random Forest e como inputs alguns indicadores técnicos tradicionáis, como:
+A idéia principal é testar indicadores técnicos para a explicação de retornos da ação PETR4, para isso foi usado o modelo de Random Forest e como inputs alguns indicadores técnicos tradicionáis, como:
 
 * RSI
 * Stochastic
