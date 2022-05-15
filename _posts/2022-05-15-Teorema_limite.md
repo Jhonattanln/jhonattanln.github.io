@@ -60,3 +60,20 @@ O próximo passo será normalizar a média de X, assim temos:
 
 Portanto, o TLC terá média 0 e variância 1
 ![Teorema](/img/posts/Teorema_limite/Captura_2.png)
+
+Podemos então plotar um gráfico da distribuição de qualquer um das diferentes distribuições
+
+```r
+### Plotando distribuição 
+
+janela %>%
+  ggplot(aes(x = fFisher))+ # distribuiÃ§Ã£o Fisher
+  geom_histogram(aes(y = ..density..),bins = 70, fill = 'black', alpha = 0.8)+
+  geom_density(size = 1.5, alpha = 0.9, color = 'red')+
+  theme_hc()+
+  scale_colour_hc()
+
+ecdf_fisher <- ecdf(janela$fFisher)
+
+plot(ecdf_fisher)
+```
