@@ -139,4 +139,3 @@ f.tight_layout()
 
 ### Gráfico de retorno e drawdown:
 ![estratégia](/img\posts\Decision_Tree\Estratégia_Decision.png)
-
