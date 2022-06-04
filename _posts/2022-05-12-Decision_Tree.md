@@ -103,6 +103,11 @@ pipeline = Pipeline(steps=[('Scaler',scaler),
 criterion = ["gini", 'entropy']
 max_depth = [2, 4, 6, 8, 10]
 random_state = [3, 4]
+
+### Criando parametros para comparação 
+parameters = dict(Decision_Tree__criterion=criterion, 
+                    Decision_Tree__max_depth=max_depth,
+                    Decision_Tree__random_state=random_state)
 ```
 
 ### Rodando modelo
