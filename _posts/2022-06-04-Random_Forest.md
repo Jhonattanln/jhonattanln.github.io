@@ -53,4 +53,39 @@ customer.info()
 ### Checando dados da amostra
 customer.info()
 ```
-Com os código a cima é possível notar a 
+Com os código a cima é possível notar valores nulos no dataset, o que necessariamente deve ser tratado.
+```python
+print(customer.isnull().sum()) ### Contagem de valores nulos
+
+#### Substituindo valores nulos
+for col in customer.columns:
+    if customer[col].isnull().sum() > 0:
+        customer[col].fillna(customer[col].mean(), inplace=True)
+```
+### Processamento de dados
+
+Em geral esses tipos de dados são desbalanceados, ou seja, terá bem mais observações de um respectivo dado dentro da amostra. Um exemplo de dados desbalanceados seria uma caixa de email, onde 99% dos emails que chagam são emails "limpos" (não nenhum tipo de má intensão) e apenas 1% dos emails são spam. Dessa maneira seria possível treinar um modelo de ML com esses dados que possuiria uma acurácia de 99%, neste caso ele poderia te recomendar todos os emails que chegam em sua caixa, juntamente com os emails maliciosos. Este é o problema de trabalhar com dados desbalanceados.
+```python
+### Contando targets
+sns.countplot(x='label', data=customer, palette='hls')
+plt.show()
+```
+!['Contagem'](/img/posts/Random_Forest/Contagem.png)
+
+```python
+### Criando variaveis dos dados
+X = customer.drop(['label'], axis=1)
+y = customer['label']
+```
+Uma alternativa para se trabalhar com dados desbalanceados seria seria excluir os targets de maior frequência e deixa-los na mesma quantidade, porém isso prejudica o modelo já que irá diminuir a base de dados e com isso o desempenho irá diminuir i.e. acurácia. Para evitar esse problema é muito comum o uso do SMOTE (_Synthetic Minority Oversampling Technique_) que basicamente é um algoritmo replica a amostra de menor frequência sinteticamente, ou seja, não é simplismente um copia e cola ela terá distinção nas features.
+```python
+### Aplicando SMOTE
+sm = SMOTE(random_state=42)
+X_res, y_res = sm.fit_resample(X, y)
+```
+Podemos fazer a contagem novamente
+```python
+### Conatando dados
+sns.countplot(y_res, palette='hls')
+plt.show()
+```
