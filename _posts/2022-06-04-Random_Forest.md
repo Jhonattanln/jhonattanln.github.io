@@ -9,6 +9,7 @@ background: '/img/posts/Decision_Tree/Decision_Tree.jpg'
 Análise de crédito é uma área extremamente importante para provedores de crédito, neste sentido o uso de **Inteligência Artificial** para ánalise de risco de quem toma o crédito é muito comum já que por ela é possível estimar bons e más pagadores.
 
 A análise abaixo é feita através de um Dataset que replica informações de clientes de um banco disponibilizadas pelo Kaggle.
+> Disponível em: https://www.kaggle.com/datasets/praveengovi/credit-risk-classification-dataset
 
  ```python
 ### Importando bibliotecas
@@ -152,4 +153,24 @@ print('RMSE: ', rmse_test)
 ```
 > Acuracia:  0.8648148148148148
 > RMSE:  0.36767538017276213
+```python
+### Analisando a matriz de confusao
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Low risk', 'High risk'])
+disp.plot(cmap='PuBu', colorbar=False)
+
+### Report de classificacao
+print(classification_report(y_test, y_pred))
+```
+!['Matriz'](/img/posts/Random_Forest/matriz.png)
+
+Também podemo análisar quais as features que possuiem maior relevância dentro do modelo de Random Forest
+```python
+### Analisando fatores de importancia
+importances = clf_GS_best.feature_importances_
+importances = pd.DataFrame(importances, index=X.columns, columns=['importancia'])
+importances.sort_values(by='importancia', ascending=True, inplace=True)
+importances.plot(kind='barh')
+```
+!['Import'](/img/posts/Random_Forest/Importancia.png)
 
