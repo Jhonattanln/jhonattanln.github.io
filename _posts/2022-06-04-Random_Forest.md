@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from zipfile import ZipFile ## biblioteca para descompactar arquivo .zip
 ```
-Os dados foram coletado da plataforma Kaggle e são disponibilizados via arquivo zipado, portanto devemos extrar os arquivos
+Os dados foram coletado da plataforma Kaggle e são disponibilizados via arquivo zipado, portanto devemos extrair os arquivos
 ```python
 path = 'archive.zip' ## nome do arquivo .zip
 
@@ -98,3 +98,5 @@ Finalizada a parte de tratamento de dados partimos para criação do pipeline
 ### Separando dados de treinameto
 X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.3, random_state=42)
 ```
+O pipeline sera divididos em dois processos: i) Normalização dos dados para evitar distorções da amostra; ii) O algoritimo de **Random Forest**
+> Random forest é um algoritmo de Machine Learning muito utilizado, como um algoritimo de bagging tem essencialmente a ideia de diminuir a variância dos erros justamente fazendo uma interação na estrutura dos dados utilizando diferentes abordagens para isso.
