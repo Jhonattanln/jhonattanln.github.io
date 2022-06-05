@@ -45,3 +45,12 @@ with ZipFile(path, mode="r") as f:
 customer = pd.read_csv('customer_data.csv')
 customer.head()
 ```
+!['Tabela'](/img/posts/Random_Forest/Tabela.png)
+```python
+### Checando estrutura dos dados 
+customer.info()
+
+### Checando dados da amostra
+customer.info()
+```
+Com os código a cima é possível notar a 
