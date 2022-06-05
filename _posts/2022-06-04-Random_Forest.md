@@ -95,19 +95,24 @@ plt.show()
 ### Preparando Pipeline
 
 Finalizada a parte de tratamento de dados partimos para criação do pipeline
+
 ```python
 ### Separando dados de treinameto
 X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.3, random_state=42)
 ```
+
 O pipeline sera divididos em dois processos: i) Normalização dos dados para evitar distorções da amostra; ii) O algoritimo de **Random Forest**
 > Random forest é um algoritmo de Machine Learning muito utilizado, como um algoritimo de bagging tem essencialmente a ideia de diminuir a variância dos erros justamente fazendo uma interação na estrutura dos dados utilizando diferentes abordagens para isso.
+
 ```python
 ### Montando pipeline
 scaler = StandardScaler()
 rf = RandomForestClassifier()
 pipeline = Pipeline([('scaler', scaler), ('Random_Forest', rf)])
 ```
+
 Para o modelo de Random Forest podemos testar diferentes hiperparametros para obtenção do que proporciona o melhor resultado, podemos entrão criar parametros para que o modelo teste.
+
 ```python
 ### Parametros
 criterion = ['gini', 'entropy']
@@ -122,25 +127,31 @@ param_grid = dict(Random_Forest__criterion=criterion,
                     Random_Forest__random_state=random_state)
 ```
 Utilizando a biblioteca _GridSearchCV_ podemos testar esses parametros
+
 ```python
 ### Aplicando GridSearchCV
 clf_GS = GridSearchCV(pipeline, param_grid=param_grid, cv=5, scoring='accuracy')
 clf_GS.fit(X_train, y_train)
 ```
 Para verificar os melhores resultados podemos usar o comando do próprio GridSearchSV
+
 ```python
 ### Imprimindo resultados
 print('Melhor modelo: {}'.format(clf_GS.best_params_))
 ```
 Com os melhores parametros definidos podemos rodar novamente uma Random Forest
+
 ```python
 ### Rodando melhor modelo
 clf_GS_best = RandomForestClassifier(criterion='gini', max_features='auto', n_estimators=500, random_state=42)
 
 ### Fit novo modelo
 clf_GS_best.fit(X_train, y_train)
+
 ```
-Podemos fazer a previsão da amostra de teste e gerar as métricas do modelo
+### Testando o modelo
+Podemos agora fazer a previsão para os dados de teste e gerar as métricas do modelo
+
 ```python
 ### Fazendo predições
 y_pred = clf_GS_best.predict(X_test)
@@ -153,6 +164,7 @@ print('RMSE: ', rmse_test)
 ```
 > Acuracia:  0.8648148148148148
 > RMSE:  0.36767538017276213
+
 ```python
 ### Analisando a matriz de confusao
 cm = confusion_matrix(y_test, y_pred)
