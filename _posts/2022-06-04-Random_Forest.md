@@ -89,3 +89,12 @@ Podemos fazer a contagem novamente
 sns.countplot(y_res, palette='hls')
 plt.show()
 ```
+!['Contagem_2'](/img/posts/Random_Forest/Contage_1=2.png)
+
+### Preparando Pipeline
+
+Finalizada a parte de tratamento de dados partimos para criação do pipeline
+```python
+### Separando dados de treinameto
+X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.3, random_state=42)
+```
