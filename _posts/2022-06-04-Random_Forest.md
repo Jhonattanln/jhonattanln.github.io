@@ -139,22 +139,14 @@ Para verificar os melhores resultados podemos usar o comando do próprio GridSea
 ### Imprimindo resultados
 print('Melhor modelo: {}'.format(clf_GS.best_params_))
 ```
-Com os melhores parametros definidos podemos rodar novamente uma Random Forest
 
-```python
-### Rodando melhor modelo
-clf_GS_best = RandomForestClassifier(criterion='gini', max_features='auto', n_estimators=500, random_state=42)
-
-### Fit novo modelo
-clf_GS_best.fit(X_train, y_train)
-
-```
 ### Testando o modelo
+
 Podemos agora fazer a previsão para os dados de teste e gerar as métricas do modelo
 
 ```python
 ### Fazendo predições
-y_pred = clf_GS_best.predict(X_test)
+y_pred = clf_GS.predict(X_test)
 
 ### Testando a acuracia
 acuracia = accuracy(y_test, y_pred)
@@ -162,8 +154,8 @@ rmse_test = MSE(y_test, y_pred)**0.5
 print('Acuracia: ', acuracia)
 print('RMSE: ', rmse_test)
 ```
-> Acuracia:  0.8648148148148148
-> RMSE:  0.36767538017276213
+> Acuracia:  0.8666666666666667
+> RMSE:  0.3651483716701107
 
 ```python
 ### Analisando a matriz de confusao
@@ -179,7 +171,7 @@ print(classification_report(y_test, y_pred))
 Também podemo análisar quais as features que possuiem maior relevância dentro do modelo de Random Forest
 ```python
 ### Analisando fatores de importancia
-importances = clf_GS_best.feature_importances_
+importances = importances = clf_GS.best_estimator_.named_steps['Random_Forest'].feature_importances_
 importances = pd.DataFrame(importances, index=X.columns, columns=['importancia'])
 importances.sort_values(by='importancia', ascending=True, inplace=True)
 importances.plot(kind='barh')
