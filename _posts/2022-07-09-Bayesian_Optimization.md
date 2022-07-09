@@ -63,3 +63,22 @@ df['Normal'] = (df.Fechamento - df.Mínimo) / (df.Máximo - df.Mínimo)
 ```
 ### Tratando dados:
 Houve a necessidade da limpeza de dados faltantes quando calculados os indicadores, como também a criação de targets para o modelo de classificação supervisionada
+
+```python
+df = df.dropna() ## excluindo valores nulos
+X = df[[
+        'Q Negs', 'Q Títs', 'Volume', 'Fechamento', 'Abertura', 'Mínimo', 
+        'Máximo', 'Médio', 'Kama', 'ROC', 'RSI', 'Stoch', 'Chaikin_money', 
+        'Force_index', 'Normal']] ## criando as features
+y = np.where(df['Fechamento'].shift(-1) > df['Fechamento'], 1, -1) ## criando target
+```
+Através train_test_split foi criado a base de treinamento e teste
+Houve a normalização dos dados para que os valores fossem entre 0 e 1 através do método StandardScaler
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+```
+
