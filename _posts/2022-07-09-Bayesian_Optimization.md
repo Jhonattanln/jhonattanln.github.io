@@ -150,3 +150,25 @@ report = classification_report(y_test, rf.predict(X_test))
 print(report)
 ```
 Com o modelo já treinado é possível analisar o desempenho da estratégia
+
+```python
+df['Strategy_returns'] = df['Retornos'].shift(-1) * rf.predict(X) ### retorno da estratégia
+### Calculando Drawdown
+strategy = df['Strategy_returns'][X_train.shape[0]:]
+bova = df['Fechamento'][X_train.shape[0]:].div(df['Fechamento'].iloc[0])
+wealth = 1000*(1+strategy).cumprod()
+peaks = wealth.cummax()
+drawdown = (wealth-peaks)/peaks
+
+plt.style.use('fivethirtyeight')
+f, (a0, a1) = plt.subplots(2, 1, figsize=(20, 15), gridspec_kw={'height_ratios': [3, 1]})
+a0.plot((df['Strategy_returns'][X_train.shape[0]:]+1).cumprod())
+a0.plot(bova, color='red')
+a0.set_title('Retornos')
+a0.legend(['Strategy', 'BOVA11'])
+a1.plot(drawdown, linewidth=0)
+a1.set_title('Drawdown')
+a1.fill_between(drawdown.index, drawdown, alpha=1)
+f.tight_layout()
+```
+!['Estratégia'](/img/posts/Bayesian/Estrategia.png)
