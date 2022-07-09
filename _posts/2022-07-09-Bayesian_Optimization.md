@@ -81,4 +81,72 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 ```
+A ideia por trás do **Bayesian Optimization** é criar um modelo probabilistico usando um processo Gaussiano, ou seja, os valores assumidos da função seguem uma distribuição Gaussiana multivariada. Onde a covariância dos valores da função é dada por um Kernel GP entre os parâmetros.
 
+>> [Bayesian Optimization](https://scikit-optimize.github.io/stable/modules/generated/skopt.gp_minimize.html)
+
+```python
+### Função de minimização para a Random Forest
+def optimize(params, param_names, x, y):
+    params = dict(zip(param_names, params))
+    model = RandomForestClassifier(**params)
+    kf = KFold(n_splits=5)
+    accuracies = []
+    for idx in kf.split(X=x, y=y):
+        train_idx, test_idx = idx[0], idx[1]
+        xtrain = x[train_idx]
+        ytrain = y[train_idx]
+
+        xtest = x[test_idx]
+        ytest = y[test_idx]
+
+        model.fit(xtrain, ytrain)
+        preds = model.predict(xtest)
+        fold_acc = accuracy_score(ytest, preds)
+        accuracies.append(fold_acc)
+
+    return -1.0 * np.mean(accuracies)
+```
+```python
+### Escolhendo os parâmetros para a Random Forest
+parameters = [
+    space.Integer(3, 15, name="max_depth"),
+    space.Categorical(["gini", "entropy"], name="criterion"),
+    space.Integer(100, 1000, prior="uniform", name="n_estimators"),
+    space.Integer(2, 10, name="min_samples_split")
+    ]
+
+param_names = ['max_depth', 'criterion', 'n_estimators', 'min_samples_split']
+```
+```python
+### Função de otimização para Bayes Optimization
+optimization_function = partial(
+    optimize,
+    param_names=param_names,
+    x=X_train,
+    y=y_train
+)
+### Rodando o Bayes Optimization
+result = gp_minimize(
+    optimization_function, 
+    dimensions=parameters,
+    n_calls=15, 
+    n_random_starts=10, 
+    verbose=10
+)
+```
+### Conferindo hiperparâmetros do modelo:
+```python
+print(dict(zip(param_names, result.x))) ## imprime os parametros
+```
+Agora que já descobrimos os hiperparâmetros que melhor se ajustam aos dados, é necessário rodar novamente o modelo com os hiperparâmetros desejados.
+
+```python
+rf = RandomForestClassifier(**dict(zip(param_names, result.x))) ## criando o modelo
+rf.fit(X_train, y_train) ### treinando o modelo
+
+### Testando o modelo
+report = classification_report(y_test, rf.predict(X_test))
+print(report)
+```
+Com o modelo já treinado é possível analisar o desempenho da estratégia
