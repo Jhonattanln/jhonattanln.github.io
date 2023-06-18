@@ -1,9 +1,7 @@
 ---
 layout: page
 title: Sobre
-description: Acadêmico de economia.
+description: Economista
 background: '/img/bg-sobre.png'
 ---
-
-Jhonattan Lino.
-
+Sou formado em economia pela PUCPR. Atualmente sou cientista de dados na consultoria financeira [Valuup](https://www.valuup.com.br/) e na gestora de recursos [TM3 Capital](https://tm3.capital/pb/).
