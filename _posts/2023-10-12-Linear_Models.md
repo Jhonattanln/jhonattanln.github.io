@@ -2,9 +2,13 @@
 layout: post
 title: "Modelos Lineares"
 subtitle: "Regressão Linear"
-background: '/img/posts/Decision_Tree/eq.png'
+author: Jhonattan Lino
+date: "2023-10-12"
+output: 
+  pdf_document:
+    keep_tex: true
+    fig_caption: true
 ---
-
 # Modelos Lineares - Regressão Linear
 
 ### Definição
@@ -19,7 +23,7 @@ ii. Preditiva - Previsãoo dos dados futuros não observados em função das var
 
 O modelos mais simples de uma relação linear entre variáveis é explicita da seguinte forma:
 
-<i>$y= \beta_0 + \beta_1x$<i>
+$y= \beta_0 + \beta_1x$
 
 \*Assumindo que não haja erro
 
