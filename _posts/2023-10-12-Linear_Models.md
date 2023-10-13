@@ -5,7 +5,7 @@ subtitle: "Regressão Linear"
 author: Jhonattan Lino
 date: "2023-10-12"
 output: 
-  pdf_document:
+  html_document:
     keep_tex: true
     fig_caption: true
 ---
