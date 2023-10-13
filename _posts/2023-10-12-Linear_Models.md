@@ -19,7 +19,7 @@ ii. Preditiva - Previsãoo dos dados futuros não observados em função das var
 
 O modelos mais simples de uma relação linear entre variáveis é explicita da seguinte forma:
 
-$y= \beta_0 + \beta_1x$
+<i>$y= \beta_0 + \beta_1x$<i>
 
 \*Assumindo que não haja erro
 
